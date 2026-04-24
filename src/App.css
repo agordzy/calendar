@@ -53,3 +53,16 @@ li {
     padding: 10px;
     border-bottom: 1px solid #eee;
 }
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    background: #6c757d;
+}
+
+.filters button:hover {
+    background: #5a6268;
+}
