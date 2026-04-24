@@ -10,11 +10,16 @@ function App() {
         setTasks([...tasks, newTask]);
     };
 
+    // Сортировка по дате (раньше -> позже)
+    const sortedTasks = [...tasks].sort((a, b) =>
+        new Date(a.deadline) - new Date(b.deadline)
+    );
+
     return (
         <div className="App">
             <h1>Календарь дедлайнов</h1>
             <TaskForm onAddTask={addTask} />
-            <TaskList tasks={tasks} />
+            <TaskList tasks={sortedTasks} />
         </div>
     );
 }
