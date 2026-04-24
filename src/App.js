@@ -28,9 +28,13 @@ function App() {
         return true;
     });
 
+    // Текущая дата
+    const currentDate = new Date().toLocaleDateString('ru-RU');
+
     return (
         <div className="App">
             <h1>Календарь дедлайнов</h1>
+            <p className="current-date">Сегодня: {currentDate}</p>
 
             <div className="filters">
                 <button onClick={() => setFilter('all')}>Все</button>
