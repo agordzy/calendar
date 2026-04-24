@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
@@ -7,8 +7,26 @@ function App() {
     const [tasks, setTasks] = useState([]);
     const [filter, setFilter] = useState('all');
 
+    // Загрузка задач из localStorage при запуске
+    useEffect(() => {
+        const savedTasks = localStorage.getItem('tasks');
+        if (savedTasks) {
+            setTasks(JSON.parse(savedTasks));
+        }
+    }, []);
+
+    // Сохранение задач в localStorage при изменении
+    useEffect(() => {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, [tasks]);
+
     const addTask = (newTask) => {
-        setTasks([...tasks, newTask]);
+        const taskWithId = { ...newTask, id: Date.now() };
+        setTasks([...tasks, taskWithId]);
+    };
+
+    const deleteTask = (id) => {
+        setTasks(tasks.filter(task => task.id !== id));
     };
 
     // Сортировка по дате
@@ -28,7 +46,6 @@ function App() {
         return true;
     });
 
-    // Текущая дата
     const currentDate = new Date().toLocaleDateString('ru-RU');
 
     return (
@@ -43,7 +60,7 @@ function App() {
             </div>
 
             <TaskForm onAddTask={addTask} />
-            <TaskList tasks={filteredTasks} />
+            <TaskList tasks={filteredTasks} onDeleteTask={deleteTask} />
         </div>
     );
 }
