@@ -4,18 +4,14 @@ import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
 
 function App() {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(() => {
+        // Загрузка при инициализации (один раз)
+        const savedTasks = localStorage.getItem('tasks');
+        return savedTasks ? JSON.parse(savedTasks) : [];
+    });
     const [filter, setFilter] = useState('all');
 
-    // Загрузка задач из localStorage при запуске
-    useEffect(() => {
-        const savedTasks = localStorage.getItem('tasks');
-        if (savedTasks) {
-            setTasks(JSON.parse(savedTasks));
-        }
-    }, []);
-
-    // Сохранение задач в localStorage при изменении
+    // Сохранение при изменении tasks
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);

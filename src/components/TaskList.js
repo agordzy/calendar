@@ -9,7 +9,7 @@ function TaskList({ tasks, onDeleteTask }) {
                 <li key={task.id}>
                     <div className="task-info">
                         <strong>{task.title}</strong> — {task.deadline}
-                        {task.deadline < today && <span className="overdue-badge"> ⚠️ Просрочено</span>}
+                        {task.deadline < today && <span className="overdue-badge">Просрочено</span>}
                     </div>
                     <button
                         className="delete-btn"

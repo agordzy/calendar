@@ -28,7 +28,7 @@ function TaskForm({ onAddTask }) {
         value={deadline}
         onChange={(e) => setDeadline(e.target.value)}
       />
-      <button type="submit">➕ Добавить задание</button>
+      <button type="submit">Добавить задание</button>
     </form>
   );
 }
