@@ -71,3 +71,30 @@ li {
     margin-bottom: 20px;
     color: #666;
 }
+li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-info {
+    flex: 1;
+}
+
+.delete-btn {
+    background: #dc3545;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.overdue-badge {
+    color: red;
+    font-size: 12px;
+    margin-left: 10px;
+}
